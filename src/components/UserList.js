@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userSlice } from '../store/slice/userSlice';
+import { userSlice } from '../slice/userSlice';
 
 
 const initialState
@@ -27,8 +27,8 @@ const initialState
 
 const UserList = () => {
     const [userData, setUserData] = useState([]);
-    const dispatch = useDispatch();
-    const { users, loading, error } = useSelector((state) => state.userList);
+    const dispatch = useDispatch(); // slice 함수 api 실행
+    const { users, loading, error } = useSelector((state) => state.userList);     
 
     useEffect(() => {
         dispatch(userSlice());
@@ -44,18 +44,29 @@ const UserList = () => {
     
 
     return (
-        <table>
-        {userData?.map((user) =>
-        (
-            <tr>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.age}</td>
-            </tr>
-            )
-        )};
+        <div>
+            <h2>User List</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {userData?.map((user) => (
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.age}</td>
+                    </tr>
+                ))}
+            </tbody>
         </table>
+        </div>
 
     );
 }

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { userSlice } from '../slice/userSlice';
 
+// slice에서 받은 api에 대해서 데이터를 저장하는 곳
 const userService = createSlice({
     name: "users",
     initialState: {
@@ -26,4 +27,4 @@ const userService = createSlice({
     },
   });
   
-  export default userService.reducer;
+  export default userService.reducer; // reducer: 새 상태를 반환하는 함수
